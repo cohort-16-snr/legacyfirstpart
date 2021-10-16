@@ -6,7 +6,7 @@ import Nav from "./Nav";
 import Slides from "./Slides";
 import StyleSelect from "./StyleSelect";
 
-function ProductReview() {
+function ProductDetails() {
   return (
     <div className="App min-h-screen container mx-auto">
       <Nav />
@@ -20,7 +20,7 @@ function ProductReview() {
           <Cart />
         </div>
       </div>
-      <div className="       grid grid-flow-col">
+      <div className="grid grid-flow-col">
         <div className="">
           <h5>DesTITLE</h5>
           <p>Description</p>
@@ -51,4 +51,4 @@ function ProductReview() {
   );
 }
 
-export default ProductReview;
+export default ProductDetails;

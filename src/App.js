@@ -1,13 +1,18 @@
 import React from "react";
-import ProductReview from "./Components/ProductReview";
+import ProductDetails from "./Components/ProductDetails";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      data=[]
+    };
+  }
+  getData(){
+    axios.get
   }
   render() {
-    return <ProductReview />;
+    return <ProductDetails />;
   }
 }
 
