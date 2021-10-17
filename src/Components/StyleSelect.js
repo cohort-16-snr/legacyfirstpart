@@ -1,17 +1,20 @@
 import React from "react";
 
-function StyleSelect() {
+function StyleSelect(props) {
+  // const data = props.styles.map((el) => el.photos);
   return (
     <div className="grid grid-flow-row items-center">
       <p> "STYLE / SELECTED STYLE"</p>
       <div className="grid grid-flow-col">
-        <div className="bg-gray-200 rounded-full h-16 w-16 flex items-center justify-center"></div>
-        <div className="bg-gray-200 rounded-full h-16 w-16 flex items-center justify-center"></div>
+        <div
+          key={12}
+          onClick={() => props.styleSelector(key)}
+          className="bg-gray-200 rounded-full h-16 w-16 flex items-center justify-center"
+        ></div>
         <div className="bg-gray-200 rounded-full h-16 w-16 flex items-center justify-center"></div>
         <div className="bg-gray-200 rounded-full h-16 w-16 flex items-center justify-center"></div>
       </div>
       <div className="grid grid-flow-col">
-        <div className="bg-gray-200 rounded-full h-16 w-16 flex items-center justify-center"></div>
         <div className="bg-gray-200 rounded-full h-16 w-16 flex items-center justify-center"></div>
         <div className="bg-gray-200 rounded-full h-16 w-16 flex items-center justify-center"></div>
         <div className="bg-gray-200 rounded-full h-16 w-16 flex items-center justify-center"></div>
