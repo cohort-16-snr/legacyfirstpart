@@ -7,8 +7,7 @@ function StyleSelect(props) {
       <p> "STYLE / SELECTED STYLE"</p>
       <div className="grid grid-flow-col">
         <div
-          key={12}
-          onClick={() => props.styleSelector(key)}
+          onClick={() => props.styleSelector(props.styles.style_id)}
           className="bg-gray-200 rounded-full h-16 w-16 flex items-center justify-center"
         ></div>
         <div className="bg-gray-200 rounded-full h-16 w-16 flex items-center justify-center"></div>
