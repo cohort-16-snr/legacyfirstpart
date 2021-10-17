@@ -12,9 +12,10 @@ class ProductDetails extends React.Component {
     super(props);
     this.state = {
       data: {},
-      styles: {},
-      related: {},
+      styles: [],
+      related: [],
       displayedStyle: {},
+      rating: null,
     };
     this.getStyle = this.getStyle.bind(this);
   }
@@ -44,7 +45,18 @@ class ProductDetails extends React.Component {
           }
         )
       )
-      .then((styles) => this.setState({ styles: styles.data }))
+      .then((data) => this.setState({ rating: data }))
+      .then(() =>
+        axios.get(
+          "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles",
+          {
+            headers: {
+              Authorization: "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",
+            },
+          }
+        )
+      )
+      .then((styles) => this.setState({ styles: styles.data.results }))
       .then(
         () =>
           axios.get(
@@ -70,12 +82,13 @@ class ProductDetails extends React.Component {
   }
 
   render() {
+    console.log(this.state.related);
     return (
       <div className="App min-h-screen container mx-auto">
         <Nav />
         <div className=" grid grid-flow-col  ">
           <div className=" bg-transparent ">
-            <Slides styles={this.state.styles.results} />
+            <Slides styles={this.state.styles} />
           </div>
           <div className="grid grid-flow-row">
             <InfoSizeAndQuantity
