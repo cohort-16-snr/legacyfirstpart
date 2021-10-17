@@ -1,13 +1,17 @@
 import React from "react";
 import StarRatings from "react-star-ratings";
 
-class StarRating extends React.Component {
-  render() {
-    // aggregateRating = 2.35;
-    return (
-      <StarRatings rating={3.403} starDimension="15px" starSpacing="0.2px" />
-    );
+function StarRating({ rating }) {
+  let sr = rating.map((el) => el.rating);
+  let r = 0;
+  function Srating() {
+    for (let el of sr) {
+      r += el / sr.length;
+    }
   }
+  Srating();
+  // aggregateRating = 2.35;
+  return <StarRatings rating={r} starDimension="15px" starSpacing="0.2px" />;
 }
 
 export default StarRating;

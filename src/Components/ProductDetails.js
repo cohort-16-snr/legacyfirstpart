@@ -15,7 +15,7 @@ class ProductDetails extends React.Component {
       styles: [],
       related: [],
       displayedStyle: {},
-      rating: null,
+      rating: [],
     };
     this.getStyle = this.getStyle.bind(this);
   }
@@ -37,7 +37,7 @@ class ProductDetails extends React.Component {
       )
       .then(() =>
         axios.get(
-          "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles",
+          "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40344",
           {
             headers: {
               Authorization: "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",
@@ -45,7 +45,7 @@ class ProductDetails extends React.Component {
           }
         )
       )
-      .then((data) => this.setState({ rating: data }))
+      .then((data) => this.setState({ rating: data.data.results }))
       .then(() =>
         axios.get(
           "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles",
@@ -82,7 +82,7 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    console.log(this.state.related);
+    console.log(this.state.rating);
     return (
       <div className="App min-h-screen container mx-auto">
         <Nav />
@@ -92,7 +92,7 @@ class ProductDetails extends React.Component {
           </div>
           <div className="grid grid-flow-row">
             <InfoSizeAndQuantity
-              ratingStar={this.state.styles}
+              ratingStar={this.state.rating}
               info={this.state.data}
             />
             <StyleSelect
