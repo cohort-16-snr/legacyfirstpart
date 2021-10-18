@@ -2,7 +2,6 @@ import React from "react";
 import StarRatings from "react-star-ratings";
 
 function StarRating({ rating }) {
-  let info = [];
   let sr = rating.map((el) => el.rating);
   let r = 0;
   function Srating() {
