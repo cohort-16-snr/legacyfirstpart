@@ -13,9 +13,10 @@ class ProductDetails extends React.Component {
     this.state = {
       data: {},
       styles: [],
+      info: [],
       related: [],
       displayedStyle: {},
-      rating: null,
+      rating: [],
     };
     this.getStyle = this.getStyle.bind(this);
   }
@@ -26,7 +27,7 @@ class ProductDetails extends React.Component {
         "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344",
         {
           headers: {
-            Authorization: "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",
+            Authorization: "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",
           },
         }
       )
@@ -37,44 +38,45 @@ class ProductDetails extends React.Component {
       )
       .then(() =>
         axios.get(
-          "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles",
+          "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40344",
           {
             headers: {
-              Authorization: "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",
+              Authorization: "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",
             },
           }
         )
       )
-      .then((data) => this.setState({ rating: data }))
+      .then((data) => this.setState({ rating: data.data.results }))
       .then(() =>
         axios.get(
           "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles",
           {
             headers: {
-              Authorization: "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",
+              Authorization: "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",
             },
           }
         )
       )
       .then((styles) => this.setState({ styles: styles.data.results }))
+      .then(() => this.setState({ displayedStyle: this.state.styles[0] }))
       .then(
         () =>
           axios.get(
-            "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/related"
+            "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40344"
           ),
         {
           headers: {
-            Authorization: "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",
+            Authorization: "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",
           },
         }
       )
-      .then((data) => console.log(data))
+      .then((data) => this.setState({ info: data.data }))
       .catch((err) => console.log(err));
   }
 
   getStyle(id) {
-    const styles = this.state.styles;
-    for (const style of styles) {
+    let styles = this.state.styles;
+    for (let style of styles) {
       if (style.style_id === id) {
         this.setState({ displayedStyle: style });
       }
@@ -82,24 +84,24 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    console.log(this.state.related);
+    console.log(this.state.styles);
     return (
       <div className="App min-h-screen container mx-auto">
         <Nav />
         <div className=" grid grid-flow-col  ">
-          <div className=" bg-transparent ">
-            <Slides styles={this.state.styles} />
+          <div className=" bg-transparent max-w-sm">
+            <Slides styles={this.state.displayedStyle} />
           </div>
           <div className="grid grid-flow-row">
             <InfoSizeAndQuantity
-              ratingStar={this.state.styles}
+              ratingStar={this.state.rating}
               info={this.state.data}
             />
             <StyleSelect
               styleSelector={this.getStyle}
-              styles={this.state.styles.results}
+              styles={this.state.styles}
             />
-            <Cart />
+            <Cart info={this.state.displayedStyle} />
           </div>
         </div>
         <div className="grid grid-flow-col">

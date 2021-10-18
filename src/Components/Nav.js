@@ -14,7 +14,7 @@ function Nav() {
             <input
               className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
               type="text"
-              placeholder=""
+              placeholder="Search"
             />
             <span>
               <svg
