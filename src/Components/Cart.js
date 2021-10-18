@@ -1,17 +1,12 @@
 import React from "react";
 
-function Cart() {
+function Cart({ info }) {
+  console.log(info.skus);
   return (
     <div className="grid grid-flow-col">
       <div className="grid grid-flow-row">
         <div className="flex  gap-6">
-          <select class="bg-transparent items-center flex flex-auto h-10 px-5 text-black transition-colors duration-150 border border-black  focus:shadow-outline hover:bg-black hover:text-indigo-100 justify-items-end">
-            <option value="">SELECT SIZE</option>
-            <option>S</option>
-            <option>L</option>
-            <option>XL</option>
-            <option>XXL</option>
-          </select>
+          <select class="bg-transparent items-center flex flex-auto h-10 px-5 text-black transition-colors duration-150 border border-black  focus:shadow-outline hover:bg-black hover:text-indigo-100 justify-items-end"></select>
           <select className="bg-transparent items-center flex flex-auto h-10 px-5 text-black transition-colors duration-150 border border-black  focus:shadow-outline hover:bg-black hover:text-indigo-100 justify-items-end">
             <option value="">Q</option>
             <option>1</option>
